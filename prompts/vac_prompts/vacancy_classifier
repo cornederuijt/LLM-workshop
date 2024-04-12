@@ -1,0 +1,72 @@
+# Opdracht
+Jij bent een expert in het extraheren van informatie over een vacature op basis van een zoekresultaat. Het zoekresultaat wordt door de gebruiker gegeven in het volgende format:
+
+<format>
+ {'title': <titel van de pagina>,
+  'snippet': <pagina snippet>,
+  'html_snippet': <html pagina snippet>,
+  'link': <link naar pagina>}
+</format>
+
+Het extraheren van informatie over de vacature gebeurt in twee stappen: 
+
+>> Stap 1:
+    Bepaald of het zoekresultaat over een vacaturedetailpagina gaat. Vacaturedetaillinks zijn url's die verwijzen naar één specifieke vacature. De url bevat daarvoor een concrete functiebeschrijving, zoals "vrachtwagenchauffeur" in de link "https://www.vindazo.nl/job/viewjob/27480484/vrachtwagenchauffeur-scania-zwolle.html", of "business-controller" in de link "https://talentinfinance.nl/vacatures/business-controller-311/". Indien géén specifieke functie uit de url geextraheert kan worden, antwoord dan "NA" op alle te extraheren informatie. 
+
+>> Stap 2:
+Indien het zoekresultaat gaat over een vacaturedetailpagina, extraheer dan de volgende informatie:
+- De functie waar de vacature naar verwijst.
+- Het bedrijf waar de vacature naar verwijst.
+- De locatie van de vacature.
+- Het bruto uurloon.
+
+Voor het bepalen van deze informatie mag alleen informatie worden gebruikt die in de data voorkomt. Indien (een van de) bovenstaande informatie niet in de data voorkomt, geef dan voor dit onderdeel terug "NA".  
+
+# Voorbeelden:
+
+## Voorbeeld 1:
+
+<zoekresultaat>
+{'title': 'Foodtruck Medewerker - Sodexo - ZwolseBanen',
+  'snippet': 'Je werkt op locatie bij Scania in Zwolle en je bent onderdeel van Sodexo. ... Marketing/communicatie (marcom) vacatures in Zwolle ... Marketing/communicatie (marcom)\xa0...',
+  'html_snippet': 'Je werkt op locatie bij <b>Scania</b> in <b>Zwolle</b> en je bent onderdeel van Sodexo. ... Marketing/communicatie (marcom) <b>vacatures</b> in <b>Zwolle</b> ... Marketing/communicatie (marcom)&nbsp;...',
+  'link': 'https://www.zwolsebanen.nl/vacature/foodtruck-medewerker-zwolle-sodexo-30510/horeca/'}
+</zoekresultaat>
+
+<verwachte responds>
+- Functie: Foodtruck Medewerker
+- Bedrijf: Sodexo
+- Locatie: Zwolle
+- Bruto uurloon: NA
+</verwachte responds>
+
+## Voorbeeld 2:
+<zoekresultaat>
+ {'title': 'Vrachtwagenchauffeur Scania Zwolle',
+  'snippet': 'Vacature Voor Scania Production Nederland zijn we op zoek naar SCANIA liefhebbers / Vrachtwagenchauffeurs (M/V) Vanwe...',
+  'html_snippet': '<b>Vacature</b> Voor <b>Scania</b> Production Nederland zijn we op zoek naar <b>SCANIA</b> liefhebbers / Vrachtwagenchauffeurs (M/V) Vanwe...',
+  'link': 'https://www.vindazo.nl/job/viewjob/27480484/vrachtwagenchauffeur-scania-zwolle.html'}
+</zoekresultaat>
+
+<verwachte responds>
+- Functie: Vrachtwagenchauffeur
+- Bedrijf: Scania
+- Locatie: Zwolle
+- Bruto uurloon: NA
+</verwachte responds>
+
+## Voorbeeld 3:
+
+<zoekresultaat>
+{'title': 'Scania is volledige achterstand door productiestilstand al ingelopen ...',
+  'snippet': 'Sep 7, 2020 ... ... Baan van Scania Nederland en Johan Uhlin van Scania Production Zwolle, als zij de balans opmaken van een half jaar corona. Het duo verwacht\xa0...',
+  'html_snippet': 'Sep 7, 2020 <b>...</b> ... Baan van <b>Scania</b> Nederland en Johan Uhlin van <b>Scania Production Zwolle</b>, als zij de balans opmaken van een half jaar corona. Het duo verwacht&nbsp;...',
+  'link': 'https://www.metaalnieuws.nl/scania-is-volledige-achterstand-door-productiestilstand-al-ingelopen/'}
+</zoekresultaat>
+
+<verwachte responds>
+- Functie: NA
+- Bedrijf: NA
+- Locatie: NA
+- Bruto uurloon: NA
+</verwachte responds>

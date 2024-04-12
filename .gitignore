@@ -1,3 +1,17 @@
+# Project/Mac specific:
+.DS_Store
+config/keys/*
+!config/keys/.keep
+
+data/*
+
+.virtual_documents/
+
+# local IntelliJ IDE configs
+.idea
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
